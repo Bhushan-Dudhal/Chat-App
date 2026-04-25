@@ -11,7 +11,7 @@ class AppPage {
   static const String initial = AppRoutes.splash;
 
   static final routes = [
-    GetPage(name:AppRoutes.splash, page:()=> splashView()),
+    GetPage(name: AppRoutes.splash, page:()=> splashView()),
     GetPage(name: AppRoutes.login, page:()=>LoginView()),
     GetPage(name: AppRoutes.register, page: ()=>RegisterView()),
 
