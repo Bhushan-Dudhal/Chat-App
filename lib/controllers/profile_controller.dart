@@ -57,6 +57,7 @@ class ProfileController extends GetxController {
       if (user != null) {
         displayNameController.text = user.displayName;
         emailController.text = user.email;
+        
 
         
       }
