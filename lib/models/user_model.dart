@@ -39,6 +39,11 @@ class UserModel {
       photoURL: map['photoURL'] ?? '',
       isOnline: map['isOnline'] ?? false,
       lastSeen: map['lastSeen']!=null?(map['lastSeen']as Timestamp).toDate():DateTime.now(),
+    //   lastSeen: map['lastSeen'] != null
+    // ? (map['lastSeen'] is Timestamp
+    //     ? (map['lastSeen'] as Timestamp).toDate()
+    //     : DateTime.fromMillisecondsSinceEpoch(map['lastSeen']))
+    // : DateTime.now(),
       createAt: map['createAt']!=null ?(map['createAt'] as Timestamp).toDate() :DateTime.now()
     );
   }
@@ -56,6 +61,7 @@ class UserModel {
       id: id ?? this.id,
       email: email ?? this.email,
       displayName: displayName ?? this.displayName,
+      photoURL: photoURL??this.photoURL,
       isOnline: isOnline??this.isOnline,
       lastSeen: lastSeen ?? this.lastSeen,
       createAt: createAt ?? this.createAt,

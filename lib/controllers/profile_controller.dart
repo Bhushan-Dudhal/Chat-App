@@ -16,7 +16,7 @@ class ProfileController extends GetxController {
   final Rx<UserModel?> _curentUser = Rx<UserModel?>(null);
 
   bool get isLoading => _isLoading.value;
-  bool get isEding => _isEditing.value;
+  bool get isEditing => _isEditing.value;
   String get error => _error.value;
   UserModel? get currentUser => _curentUser.value;
 
