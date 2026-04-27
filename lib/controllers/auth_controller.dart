@@ -28,11 +28,11 @@ class AuthController extends GetxController {
   void _handleAuthStateChange(User? user) {
     if (user == null) {
       if (Get.currentRoute != AppRoutes.login) {
-        Get.offAllNamed(AppRoutes.login);
+        Get.offAllNamed(AppRoutes.login); 
       }
     } else {
-      if (Get.currentRoute != AppRoutes.main) {
-        Get.offAllNamed(AppRoutes.main);
+      if (Get.currentRoute != AppRoutes.profile) {
+        Get.offAllNamed(AppRoutes.profile);
       }
     }
     if (!_isinitialized.value) {

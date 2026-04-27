@@ -1,7 +1,9 @@
 // import 'package:chat_app/controllers/forget_password_controller.dart';
+import 'package:chat_app/controllers/profile_controller.dart';
 import 'package:chat_app/routes/app_routes.dart';
 import 'package:chat_app/views/auth/forget_password_view.dart';
 import 'package:chat_app/views/auth/login_view.dart';
+import 'package:chat_app/views/auth/profile_view.dart';
 import 'package:chat_app/views/auth/register_view.dart';
 import 'package:chat_app/views/auth/spash_view.dart';
 // import 'package:flutter/widgets.dart';
@@ -30,12 +32,12 @@ class AppPage {
     // })
     // ),
 
-    // GetPage(name: AppRoutes.profile, page: ()=>profileView(),
-    // binding: BindingsBuilder((){
-    //   Get.put(ProfileController());
-    // })
+    GetPage(name: AppRoutes.profile, page: ()=>ProfileView(),
+    binding: BindingsBuilder((){
+      Get.put(ProfileController());
+    })
 
-    // ),
+    ),
 
     // GetPage(name: AppRoutes.chat, page:()=>chatView(),
 
