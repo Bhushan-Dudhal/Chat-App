@@ -36,7 +36,7 @@ class FirestoreService {
       if (doc.exists) {
         await _firestore.collection('users').doc(userId).update({
           'isOnline': isOnline,
-          'lastSeen': DateTime.now().microsecondsSinceEpoch,
+          'lastSeen': DateTime.now(),
         });
       }
     } catch (e) {

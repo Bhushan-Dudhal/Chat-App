@@ -28,8 +28,8 @@ class ProfileController extends GetxController {
 
   @override
   void onClose() {
-    displayNameController.dispose();
-    emailController.dispose();
+    // displayNameController.dispose();
+    // emailController.dispose();
     super.onClose();
   }
 
@@ -108,7 +108,7 @@ class ProfileController extends GetxController {
 
             TextButton(
               onPressed: () => Get.back(result: true),
-              style: TextButton.styleFrom(foregroundColor: Colors.redAccent),
+              style: TextButton.styleFrom(backgroundColor: Colors.redAccent),
               child: Text('Delete', style: TextStyle(color: Colors.white)),
             ),
           ],
