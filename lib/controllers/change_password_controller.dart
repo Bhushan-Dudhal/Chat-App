@@ -59,14 +59,15 @@ class ChangePasswordController extends GetxController {
         throw Exception('No User Logged In');
       }
 
-      final credential = EmailAuthProvider.credential(
-        email: user.email!,
-        password: currentPasswordController.text,
-      );
+      // final credential = EmailAuthProvider.credential(
+      //   email: user.email!,
+      //   password: currentPasswordController.text,
+      // );
 
-      await user.reauthenticateWithCredential(credential);
+      // await user.reauthenticateWithCredential(credential);
 
       await user.updatePassword(newPasswordController.text);
+
 
       Get.snackbar(
         'Success',
@@ -81,8 +82,7 @@ class ChangePasswordController extends GetxController {
       newPasswordController.clear();
       confirmPasswordController.clear();
 
-      Get.back();
-    } on FirebaseAuthException catch (e) {
+     } on FirebaseAuthException catch (e) {
       String errorMessage;
       switch (e.code) {
         case 'Wrong-password':
