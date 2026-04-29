@@ -1,9 +1,11 @@
 import 'package:chat_app/controllers/auth_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ChangePasswordController extends GetxController {
   final AuthController _authController = Get.find<AuthController>();
+
   final TextEditingController currentPasswordController =
       TextEditingController();
   final TextEditingController newPasswordController = TextEditingController();
@@ -25,7 +27,133 @@ class ChangePasswordController extends GetxController {
   bool get obscureConfirmPassword => _obscureConfirmPassword.value;
 
   @override
-  void onClose(){
+  void onClose() {
+    currentPasswordController.dispose();
+    newPasswordController.dispose();
+    confirmPasswordController.dispose();
+    super.onClose();
+  }
 
+  void toggleCurrentPasswordVisibility() {
+    _obscureCurrentPassword.value = !_obscureCurrentPassword.value;
+    print(_authController);
+  }
+
+  void toggleNewPasswordVisibility() {
+    _obscureNewPassword.value = !_obscureNewPassword.value;
+  }
+
+  void toggleConfirmPasswordVisibility() {
+    _obscureConfirmPassword.value = !_obscureConfirmPassword.value;
+  }
+
+  Future<void> changePassword() async {
+    if (!formKey.currentState!.validate()) return;
+    try {
+      _isLoading.value = true;
+      _eroor.value = '';
+
+      final user = FirebaseAuth.instance.currentUser;
+
+      if (user == null) {
+        throw Exception('No User Logged In');
+      }
+
+      final credential = EmailAuthProvider.credential(
+        email: user.email!,
+        password: currentPasswordController.text,
+      );
+
+      await user.reauthenticateWithCredential(credential);
+
+      await user.updatePassword(newPasswordController.text);
+
+      Get.snackbar(
+        'Success',
+        'Password Changed Successfully',
+        backgroundColor: Colors.green.withOpacity(0.1),
+
+        colorText: Colors.green,
+        duration: Duration(seconds: 3),
+      );
+
+      currentPasswordController.clear();
+      newPasswordController.clear();
+      confirmPasswordController.clear();
+
+      Get.back();
+    } on FirebaseAuthException catch (e) {
+      String errorMessage;
+      switch (e.code) {
+        case 'Wrong-password':
+          errorMessage = 'Current Password is Incorrect';
+          break;
+        case 'Weak-password':
+          errorMessage = 'New Password is too Weak';
+          break;
+        case 'requires-recent-login':
+          errorMessage = 'Please sign out and again before changing password';
+          break;
+
+        default:
+          errorMessage = 'Failed To Change Password';
+      }
+
+      _eroor.value = errorMessage;
+      Get.snackbar(
+        'Error',
+        errorMessage,
+        backgroundColor: Colors.red.withOpacity(0.1),
+        colorText: Colors.red,
+        duration: Duration(seconds: 4),
+      );
+    } catch (e) {
+      _eroor.value = 'Failed To Change Pasword';
+      print(e.toString());
+      Get.snackbar(
+        "Error",
+        _eroor.value,
+        backgroundColor: Colors.red.withOpacity(0.1),
+        colorText: Colors.red,
+        duration: Duration(seconds: 4),
+      );
+    } finally {
+      _isLoading.value = false;
+    }
+  }
+
+  String? validateCurrentPassword(String? value) {
+    if (value?.isEmpty ?? true) {
+      return 'Please enter  your current password';
+    }
+    return null;
+  }
+
+  String? validateNewPassword(String? value) {
+    if (value?.isEmpty ?? true) {
+      return 'Please enter a new password';
+    }
+    if (value!.length < 6) {
+      return 'Password Must be at least 6 characters';
+    }
+    if (value == currentPasswordController.text) {
+      return 'New password must be different from current password';
+    }
+    return null;
+  }
+
+  String? validateConfirmPassword(String? value) {
+    if (value?.isEmpty ?? true) {
+      return 'Please confirm your  new password';
+    }
+
+    if (value != newPasswordController.text) {
+      return 'Password Does Not Match';
+    }
+    return null;
+  }
+
+  void clearError() {
+    _eroor.value = '';
   }
 }
