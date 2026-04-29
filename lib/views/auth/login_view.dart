@@ -86,7 +86,7 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(height: 16),
                 TextFormField(
                   controller: _passwordController,
-                  obscureText: true,
+                  obscureText: _obsecurePassword,
                   decoration: InputDecoration(
                     labelText: 'Password',
                     prefixIcon: Icon(Icons.lock_outline),
