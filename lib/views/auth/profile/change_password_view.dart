@@ -89,7 +89,7 @@ class ChangePasswordView extends StatelessWidget {
                   obscureText: controller.obscureConfirmPassword,
                   decoration: InputDecoration(
                     labelText: 'Confirm New Password',
-                    prefixIcon: Icon(Icons.lock_outline),
+                    prefixIcon: Icon(Icons.verified_user),
                     suffixIcon: IconButton(onPressed:controller.toggleConfirmPasswordVisibility, icon: Icon(
                       controller.obscureConfirmPassword? Icons.visibility_outlined:Icons.visibility_off_outlined
                     )

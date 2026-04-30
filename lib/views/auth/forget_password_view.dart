@@ -6,12 +6,11 @@ import 'package:get/instance_manager.dart';
 
 class ForgetPasswordView extends StatelessWidget {
   // const ForgetPasswordView({super.key})
-    final controller = Get.put(ForgetPasswordController(),permanent: true);
+  final controller = Get.put(ForgetPasswordController(), permanent: true);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(24),
@@ -139,95 +138,102 @@ class ForgetPasswordView extends StatelessWidget {
   }
 
   Widget _builEmailSentContent(ForgetPasswordController controller) {
-    return Column(children: [Container(
-      padding: EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: AppTheme.sucessColor.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppTheme.sucessColor.withOpacity(0.3)),
-        
-        
-      ),
-      child: Column(
-        children: [
-           Icon(Icons.mark_email_read_rounded,
-           size: 60,
-           color: AppTheme.sucessColor,
-           ),
-           SizedBox(height: 16,),
-           Text("Email Sent!",
-           style: Theme.of(Get.context!).textTheme.headlineSmall?.copyWith(
-            color: AppTheme.sucessColor,
-            fontWeight: FontWeight.bold,
-
-           ),
-           ),
-           SizedBox(height: 8,),
-            Text("We've sent a password reset link to:",
-           style: Theme.of(Get.context!).textTheme.bodyMedium?.copyWith(
-            color: AppTheme.textSecondaryColor,
-
-           ),
-           textAlign: TextAlign.center,
-           ),
-           SizedBox(height: 4,),
-           Text(controller.emailController.text,
-            style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.w600,
-              color:AppTheme.primaryColor
-            )
-           ),
-           SizedBox(height: 12,),
-           Text('Check your email and follow the instructions to reset your password',
-           style: Theme.of(Get.context!).textTheme.bodySmall?.copyWith(
-            color: AppTheme.textSecondaryColor
-           ),
-           textAlign: TextAlign.center,
-           )
-          
-
-
-        ],
-      ),
-      ),
-      SizedBox(height: 32,),
-      SizedBox(width: double.infinity,
-      child: OutlinedButton.icon(onPressed:controller.resendEmail, 
-      icon: Icon(Icons.refresh),
-      label:Text("Resend Email")),
-      ),
-      SizedBox(height: 16,),
-       SizedBox(width: double.infinity,
-      child: ElevatedButton.icon(onPressed:controller.goBackToLogin, 
-      icon: Icon(Icons.arrow_back),
-      label:Text("Back To Sign In")),
-      ),
-      SizedBox(height: 24,),
-      Container(
-        padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: AppTheme.secondaryColor.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(12)
-        ),
-        child: Row(
-          children: [
-            Icon(
-              Icons.info_outline,
-              size:20 ,
-              color: AppTheme.secondaryColor,
-            ),
-            SizedBox(width: 12,),
-            Expanded(child: Text(
-              "Didn't receive the email? Check your spam folder or try again",
-              style: Theme.of(Get.context!).textTheme.bodySmall?.copyWith(
-                color: AppTheme.secondaryColor
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            color: AppTheme.sucessColor.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: AppTheme.sucessColor.withOpacity(0.3)),
+          ),
+          child: Column(
+            children: [
+              Icon(
+                Icons.mark_email_read_rounded,
+                size: 60,
+                color: AppTheme.sucessColor,
               ),
-            ))
-          ],
+              SizedBox(height: 16),
+              Text(
+                "Email Sent!",
+                style: Theme.of(Get.context!).textTheme.headlineSmall?.copyWith(
+                  color: AppTheme.sucessColor,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 8),
+              Text(
+                "We've sent a password reset link to:",
+                style: Theme.of(Get.context!).textTheme.bodyMedium?.copyWith(
+                  color: AppTheme.textSecondaryColor,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 4),
+              Text(
+                controller.emailController.text,
+                style: Theme.of(Get.context!).textTheme.bodyLarge?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: AppTheme.primaryColor,
+                ),
+              ),
+              SizedBox(height: 12),
+              Text(
+                'Check your email and follow the instructions to reset your password',
+                style: Theme.of(Get.context!).textTheme.bodySmall?.copyWith(
+                  color: AppTheme.textSecondaryColor,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
-      )
-      
-      
-      ]);
+        SizedBox(height: 32),
+        SizedBox(
+          width: double.infinity,
+          child: OutlinedButton.icon(
+            onPressed: controller.resendEmail,
+            icon: Icon(Icons.refresh),
+            label: Text("Resend Email"),
+          ),
+        ),
+        SizedBox(height: 16),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton.icon(
+            onPressed: controller.goBackToLogin,
+            icon: Icon(Icons.arrow_back),
+            label: Text("Back To Sign In"),
+          ),
+        ),
+        SizedBox(height: 24),
+        Container(
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: AppTheme.secondaryColor.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Row(
+            children: [
+              Icon(
+                Icons.info_outline,
+                size: 20,
+                color: AppTheme.secondaryColor,
+              ),
+              SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  "Didn't receive the email? Check your spam folder or try again",
+                  style: Theme.of(Get.context!).textTheme.bodySmall?.copyWith(
+                    color: AppTheme.secondaryColor,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }

@@ -156,11 +156,11 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                   ),
                   validator: (value) {
-                    if (value?.isEmpty??true) {
+                    if (value?.isEmpty ?? true) {
                       return 'Please confirm your password';
                     }
 
-                     if (value != _confirmPasswordController.text) {
+                    if (value != _confirmPasswordController.text) {
                       return 'Passwords do not match';
                     }
                     return null;
@@ -180,7 +180,6 @@ class _RegisterViewState extends State<RegisterView> {
                                   _emailController.text.trim(),
                                   _passwordController.text,
                                   _displayNameController.text,
-                                  
                                 );
                               }
                             },
@@ -198,7 +197,7 @@ class _RegisterViewState extends State<RegisterView> {
                   ),
                 ),
                 SizedBox(height: 16),
-               
+
                 SizedBox(height: 25),
                 Row(
                   children: [
