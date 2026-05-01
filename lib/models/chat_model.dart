@@ -26,7 +26,6 @@ class ChatModel {
     required this.updatedAt,
   });
 
-  // 🔁 Convert object → Map
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -47,7 +46,6 @@ class ChatModel {
     };
   }
 
-  // 🔁 Convert Map → Object
   factory ChatModel.fromMap(Map<String, dynamic> map) {
     // lastSeenBy parsing
     Map<String, DateTime?> lastSeenMap = {};
