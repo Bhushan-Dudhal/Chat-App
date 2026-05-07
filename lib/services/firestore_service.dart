@@ -83,7 +83,7 @@ class FirestoreService {
         );
   }
 
-  //friend request collection
+  //friend request collection                              
 
   Future<Void> sendFriendRequest(FriendRequestModel request) async {
     try {
